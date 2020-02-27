@@ -74,9 +74,6 @@ class BuildCommand(build):
                 cmake_arg_list.append("-DPYTHON_INCLUDE_DIR={}".format(python_include_dir))
                 cmake_arg_list.append("-DNUMPY_INCLUDES={}".format(numpy_include_dir))
 
-            if python_version[0] == "3":
-                cmake_arg_list.append("-DBUILD_PYTHON3=ON")
-
             subprocess.check_call(['rm', '-f', 'CMakeCache.txt'])
             subprocess.check_call(['cmake'] + cmake_arg_list)
             subprocess.check_call(['make', '-j', str(cpu_cores)])
@@ -111,7 +108,6 @@ setup(
         'Intended Audience :: Science/Research',
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',

@@ -3,7 +3,7 @@ matrix:
   include:
     - os: linux
       dist: xenial
-      name: Python Xenial
+      name: Xenial, Python build
       addons:
         apt:
           packages:
@@ -29,12 +29,11 @@ matrix:
             - python3-pip
       script:
         - |
-          python3 --version
-          python3 -m pip install --upgrade pip
-          python3 -m pip -v install .
+          cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_PYTHON3=ON
+          make
     - os: linux
       dist: bionic
-      name: Python Bionic
+      name: Bionic, Python build
       addons:
         apt:
           packages:
@@ -60,11 +59,10 @@ matrix:
             - python3-pip
       script:
         - |
-          python3 --version
-          python3 -m pip install --upgrade pip
-          python3 -m pip -v install .
+          cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_PYTHON3=ON
+          make
     - os: osx
-      name: Python MacOS
+      name: MacOS, Python build
       addons:
         homebrew:
           packages:
@@ -74,5 +72,5 @@ matrix:
             - wget
       script:
         - |
-          python --version
-          python -m pip -v install .
+          cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_PYTHON3=ON
+          make

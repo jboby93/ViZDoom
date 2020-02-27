@@ -71,32 +71,34 @@
 #  License text for the above reference.)
 
 FIND_PATH(SDL2_INCLUDE_DIR SDL.h
-  HINTS
-  $ENV{SDL2DIR}
-  PATH_SUFFIXES include/SDL2 include
-  PATHS
-  ~/Library/Frameworks
-  /Library/Frameworks
-  /usr/local/include/SDL2
-  /usr/include/SDL2
-  /sw # Fink
-  /opt/local # DarwinPorts
-  /opt/csw # Blastwave
-  /opt
-)
+        HINTS
+        $ENV{SDL2DIR}
+        PATH_SUFFIXES include/SDL2 include
+        PATHS
+        ~/Library/Frameworks
+        /Library/Frameworks
+        /usr/local/include/SDL2
+        /usr/include/SDL2
+        /sw # Fink
+        /opt/local # DarwinPorts
+        /opt/csw # Blastwave
+        /opt
+        /boot/system/develop/headers/SDL2 #Hiaku OS
+        )
 #MESSAGE("SDL2_INCLUDE_DIR is ${SDL2_INCLUDE_DIR}")
 
 FIND_LIBRARY(SDL2_LIBRARY_TEMP
-  NAMES SDL2
-  HINTS
-  $ENV{SDL2DIR}
-  PATH_SUFFIXES lib64 lib
-  PATHS
-  /sw
-  /opt/local
-  /opt/csw
-  /opt
-)
+        NAMES SDL2
+        HINTS
+        $ENV{SDL2DIR}
+        PATH_SUFFIXES lib64 lib
+        PATHS
+        /sw
+        /opt/local
+        /opt/csw
+        /opt
+        /system/lib #Hiaku OS
+        )
 
 #MESSAGE("SDL2_LIBRARY_TEMP is ${SDL2_LIBRARY_TEMP}")
 
@@ -107,16 +109,16 @@ IF(NOT SDL2_BUILDING_LIBRARY)
     # seem to provide SDL2main for compatibility even though they don't
     # necessarily need it.
     FIND_LIBRARY(SDL2MAIN_LIBRARY
-      NAMES SDL2main
-      HINTS
-      $ENV{SDL2DIR}
-      PATH_SUFFIXES lib64 lib
-      PATHS
-      /sw
-      /opt/local
-      /opt/csw
-      /opt
-    )
+            NAMES SDL2main
+            HINTS
+            $ENV{SDL2DIR}
+            PATH_SUFFIXES lib64 lib
+            PATHS
+            /sw
+            /opt/local
+            /opt/csw
+            /opt
+            )
   ENDIF(NOT ${SDL2_INCLUDE_DIR} MATCHES ".framework")
 ENDIF(NOT SDL2_BUILDING_LIBRARY)
 
@@ -177,4 +179,4 @@ ENDIF(SDL2_LIBRARY_TEMP)
 INCLUDE(FindPackageHandleStandardArgs)
 
 FIND_PACKAGE_HANDLE_STANDARD_ARGS(SDL2
-                                  REQUIRED_VARS SDL2_LIBRARY SDL2_INCLUDE_DIR)
+        REQUIRED_VARS SDL2_LIBRARY SDL2_INCLUDE_DIR)
