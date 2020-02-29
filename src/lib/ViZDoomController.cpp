@@ -269,6 +269,15 @@ namespace vizdoom {
                  || (this->gameState->MAP_END));
     }
 
+    // use isPlayerDead()
+
+    // new tester
+    bool DoomController::isMapFinished() {
+        return this->gameState->MAP_END;
+    }
+
+    //
+
     void DoomController::tic(bool update) {
 
         if (this->doomRunning) {

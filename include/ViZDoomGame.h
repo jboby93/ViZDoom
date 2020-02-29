@@ -60,6 +60,9 @@ namespace vizdoom {
 
         bool isNewEpisode();
         bool isEpisodeFinished();
+    // new state testers
+        bool isMapFinished();
+    // end new state testers
         bool isPlayerDead();
         void respawnPlayer();
         void sendGameCommand(std::string cmd);

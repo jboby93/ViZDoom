@@ -351,6 +351,12 @@ namespace vizdoom {
         return !this->doomController->isTicPossible();
     }
 
+    // new tester to see if current map is done
+    bool DoomGame::isMapFinished() {
+        if (!this->isRunning()) throw ViZDoomIsNotRunningException();
+        return this->doomController->isMapFinished();
+    }
+
     bool DoomGame::isPlayerDead() {
         if (!this->isRunning()) throw ViZDoomIsNotRunningException();
         return this->doomController->isPlayerDead();

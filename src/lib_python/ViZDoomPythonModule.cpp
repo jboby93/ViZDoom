@@ -467,6 +467,7 @@ PYBIND11_MODULE(vizdoom, vz){
         .def("is_episode_finished", &DoomGamePython::isEpisodeFinished)
         .def("is_new_episode", &DoomGamePython::isNewEpisode)
         .def("is_player_dead", &DoomGamePython::isPlayerDead)
+        .def("is_map_finished", &DoomGamePython::isMapFinished) // new tester
         .def("respawn_player", &DoomGamePython::respawnPlayer)
         .def("set_action", &DoomGamePython::setAction)
         .def("make_action", &DoomGamePython::makeAction_list)

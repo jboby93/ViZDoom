@@ -101,6 +101,10 @@ namespace vizdoom {
         void close();
         void restart();
         bool isTicPossible();
+    // new state testers
+        // isPlayerDead() already exists
+        bool isMapFinished();
+    // end new state testers
         void tic(bool update = true);
         void tics(unsigned int tics, bool update = true);
         void restartMap(std::string demoPath = "");
