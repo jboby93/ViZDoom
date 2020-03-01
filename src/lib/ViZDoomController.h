@@ -216,6 +216,9 @@ namespace vizdoom {
         void setSectorsEnabled(bool sectors);
 
         /* Buffers in SM */
+    // force updating without going through state
+        void forceUpdateScreenBuffer();
+    // end
         uint8_t *const getScreenBuffer();
         uint8_t *const getDepthBuffer();
         uint8_t *const getLabelsBuffer();

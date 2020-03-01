@@ -195,6 +195,9 @@ namespace vizdoom {
         void replayEpisode_str(std::string _str) { this->replayEpisode(_str); }
         void replayEpisode_str_int(std::string _str, unsigned int _int) { this->replayEpisode(_str, _int); }
 
+    // access to screen buffer
+        pyb::object forceGetScreenBuffer();
+        
     private:
         GameStatePython* pyState;
 

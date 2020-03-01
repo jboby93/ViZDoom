@@ -319,6 +319,21 @@ namespace vizdoom {
         return this->state;
     }
 
+    BufferPtr DoomGame::jb_forceGetScreenBuffer() {
+        /* Update buffers */
+        int channels = this->getScreenChannels();
+        int width = this->getScreenWidth();
+        int height = this->getScreenHeight();
+
+        size_t graySize = static_cast<size_t>(width * height);
+        size_t colorSize = graySize *channels;
+
+        this->doomController->forceUpdateScreenBuffer();
+
+        uint8_t *buf = this->doomController->getScreenBuffer();
+        return std::make_shared<std::vector<uint8_t>>(buf, buf + colorSize);
+    }
+
     ServerStatePtr DoomGame::getServerState(){
         ServerStatePtr serverState = std::make_shared<ServerState>();
 

@@ -481,6 +481,8 @@ PYBIND11_MODULE(vizdoom, vz){
         .def("get_state", &DoomGamePython::getState, return_value_policy::take_ownership)
         .def("get_server_state", &DoomGamePython::getServerState, return_value_policy::take_ownership)
 
+        .def("force_get_screen_buffer", &DoomGamePython::forceGetScreenBuffer)
+
         .def("get_game_variable", &DoomGamePython::getGameVariable)
         .def("get_button", &DoomGamePython::getButton)
 

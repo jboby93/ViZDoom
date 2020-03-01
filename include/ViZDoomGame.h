@@ -75,6 +75,8 @@ namespace vizdoom {
         void saveState(std::string filePath);
         void loadState(std::string filePath);
 
+    // force get the screen buffer
+        BufferPtr jb_forceGetScreenBuffer();
 
         /* Buttons settings */
         /*------------------------------------------------------------------------------------------------------------*/

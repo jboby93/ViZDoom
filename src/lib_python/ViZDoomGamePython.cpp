@@ -173,6 +173,17 @@ namespace vizdoom {
         DoomGame::setAvailableGameVariables(DoomGamePython::pyListToVector<GameVariable>(pyGameVariables));
     }
 
+    pyb::object DoomGamePython::forceGetScreenBuffer() {
+        int colorDims = 3;
+        if (this->getScreenChannels() == 1) colorDims = 2;
+        
+        BufferPtr screen = this->jb_forceGetScreenBuffer();
+        if (screen != nullptr)
+            return this->dataToNumpyArray(colorDims, this->colorShape, NPY_UBYTE, screen->data());
+        else
+            return pyb::none();
+    }
+
     // These functions are wrapped for manual GIL management
     void DoomGamePython::init(){
         ReleaseGIL gil = ReleaseGIL();

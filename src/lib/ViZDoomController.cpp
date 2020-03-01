@@ -876,6 +876,9 @@ namespace vizdoom {
     /* SM setters & getters */
     /*----------------------------------------------------------------------------------------------------------------*/
 
+    // update the internal screen buffer data
+    void DoomController::forceUpdateScreenBuffer() { this->screenBuffer = this->SM->getScreenBuffer(); }
+
     uint8_t *const DoomController::getScreenBuffer() { return this->screenBuffer; }
 
     uint8_t *const DoomController::getDepthBuffer() { return this->depthBuffer; }
