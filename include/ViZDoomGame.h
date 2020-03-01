@@ -56,6 +56,9 @@ namespace vizdoom {
 
         void setAction(std::vector<double> const &actions);
         void advanceAction(unsigned int tics = 1, bool updateState = true);
+    // manual tic-ing
+        void jb_advanceTic(bool updateState = false);
+    //
         double makeAction(std::vector<double> const &actions, unsigned int tics = 1);
 
         bool isNewEpisode();

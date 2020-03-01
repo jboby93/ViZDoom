@@ -172,6 +172,16 @@ namespace vizdoom {
         }
     }
 
+    // jboby93: manual tic advance
+    void DoomGame::jb_advanceTic(bool updateState) {
+        if (!this->isRunning()) throw ViZDoomIsNotRunningException();
+
+        try {
+            this->doomController->manualTic(updateState);
+            if (updateState) this->updateState();
+        } catch(...) { throw; }
+    }
+
     double DoomGame::makeAction(std::vector<double> const &actions, unsigned int tics) {
         this->setAction(actions);
         this->advanceAction(tics);
@@ -319,6 +329,7 @@ namespace vizdoom {
         return this->state;
     }
 
+    // jboby93
     BufferPtr DoomGame::jb_forceGetScreenBuffer() {
         /* Update buffers */
         int channels = this->getScreenChannels();
@@ -366,7 +377,7 @@ namespace vizdoom {
         return !this->doomController->isTicPossible();
     }
 
-    // new tester to see if current map is done
+    // jboby93: new tester to see if current map is done
     bool DoomGame::isMapFinished() {
         if (!this->isRunning()) throw ViZDoomIsNotRunningException();
         return this->doomController->isMapFinished();

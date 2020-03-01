@@ -467,7 +467,7 @@ PYBIND11_MODULE(vizdoom, vz){
         .def("is_episode_finished", &DoomGamePython::isEpisodeFinished)
         .def("is_new_episode", &DoomGamePython::isNewEpisode)
         .def("is_player_dead", &DoomGamePython::isPlayerDead)
-        .def("is_map_finished", &DoomGamePython::isMapFinished) // new tester
+        .def("is_map_finished", &DoomGamePython::isMapFinished) // jboby93
         .def("respawn_player", &DoomGamePython::respawnPlayer)
         .def("set_action", &DoomGamePython::setAction)
         .def("make_action", &DoomGamePython::makeAction_list)
@@ -481,7 +481,8 @@ PYBIND11_MODULE(vizdoom, vz){
         .def("get_state", &DoomGamePython::getState, return_value_policy::take_ownership)
         .def("get_server_state", &DoomGamePython::getServerState, return_value_policy::take_ownership)
 
-        .def("force_get_screen_buffer", &DoomGamePython::forceGetScreenBuffer)
+        .def("force_get_screen_buffer", &DoomGamePython::forceGetScreenBuffer) // jboby93
+        .def("advance_tic", &DoomGamePython::jb_advanceTic)
 
         .def("get_game_variable", &DoomGamePython::getGameVariable)
         .def("get_button", &DoomGamePython::getButton)

@@ -271,12 +271,10 @@ namespace vizdoom {
 
     // use isPlayerDead()
 
-    // new tester
+    // jboby93: new tester
     bool DoomController::isMapFinished() {
         return this->gameState->MAP_END;
     }
-
-    //
 
     void DoomController::tic(bool update) {
 
@@ -288,6 +286,16 @@ namespace vizdoom {
                 else this->MQDoom->send(MSG_CODE_TIC);
                 this->waitForDoomWork();
             }
+        } else throw ViZDoomIsNotRunningException();
+    }
+
+    // jboby93: manual tic control
+    void DoomController::manualTic(bool update) {
+        if(this->doomRunning) {
+            this->mapLastTic = this->gameState->MAP_TIC + 1;
+            if (update) this->MQDoom->send(MSG_CODE_TIC_AND_UPDATE);
+            else this->MQDoom->send(MSG_CODE_TIC);
+            this->waitForDoomWork();
         } else throw ViZDoomIsNotRunningException();
     }
 
