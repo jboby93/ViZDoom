@@ -182,6 +182,16 @@ namespace vizdoom {
         } catch(...) { throw; }
     }
 
+    // jboby93: force advancing the action regardless of isTicPossible()
+    void DoomGame::jb_forceAdvanceAction(unsigned int tics, bool updateState) {
+        if (!this->isRunning()) throw ViZDoomIsNotRunningException();
+        try {
+            this->doomController->tics(tics, updateState);
+            if (updateState) this->updateState();
+        }
+        catch (...) { throw; }
+    }
+
     double DoomGame::makeAction(std::vector<double> const &actions, unsigned int tics) {
         this->setAction(actions);
         this->advanceAction(tics);

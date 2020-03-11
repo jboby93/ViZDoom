@@ -189,6 +189,12 @@ namespace vizdoom {
         void advanceAction_int(unsigned int _int) { this->advanceAction(_int); }
         void advanceAction_int_bool(unsigned int _int, bool _bool) { this->advanceAction(_int, _bool); }
 
+        // jboby93: force advancing the action regardless of isTicPossible()
+        void forceAdvanceAction(unsigned int tics = 1, bool updateState = true);
+        void forceAdvanceAction_() { this->forceAdvanceAction(); }
+        void forceAdvanceAction_int(unsigned int _int) { this->forceAdvanceAction(_int); }
+        void forceAdvanceAction_int_bool(unsigned int _int, bool _bool) { this->forceAdvanceAction(_int, _bool); }
+
         void addAvailableButton_btn(Button _btn) { this->addAvailableButton(_btn); }
         void addAvailableButton_btn_int(Button _btn, double _double) { this->addAvailableButton(_btn, _double); }
 

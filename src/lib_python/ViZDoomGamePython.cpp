@@ -173,6 +173,7 @@ namespace vizdoom {
         DoomGame::setAvailableGameVariables(DoomGamePython::pyListToVector<GameVariable>(pyGameVariables));
     }
 
+    // jboby93: gets screen buffer regardless if a tic is possible or not
     pyb::object DoomGamePython::forceGetScreenBuffer() {
         int colorDims = 3;
         if (this->getScreenChannels() == 1) colorDims = 2;
@@ -193,6 +194,12 @@ namespace vizdoom {
     void DoomGamePython::advanceAction(unsigned int tics, bool updateState){
         ReleaseGIL gil = ReleaseGIL();
         DoomGame::advanceAction(tics, updateState);
+    }
+
+    // jboby93
+    void DoomGamePython::forceAdvanceAction(unsigned int tics, bool updateState) {
+        ReleaseGIL gil = ReleaseGIL();
+        DoomGame::jb_forceAdvanceAction(tics, updateState);
     }
 
     void DoomGamePython::respawnPlayer(){

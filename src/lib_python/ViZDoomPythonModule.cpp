@@ -482,7 +482,10 @@ PYBIND11_MODULE(vizdoom, vz){
         .def("get_server_state", &DoomGamePython::getServerState, return_value_policy::take_ownership)
 
         .def("force_get_screen_buffer", &DoomGamePython::forceGetScreenBuffer) // jboby93
-        .def("advance_tic", &DoomGamePython::jb_advanceTic)
+        .def("advance_tic", &DoomGamePython::jb_advanceTic) // jboby93
+        .def("force_advance_action", &DoomGamePython::forceAdvanceAction_)
+        .def("force_advance_action", &DoomGamePython::forceAdvanceAction_int)
+        .def("force_advance_action", &DoomGamePython::forceAdvanceAction_int_bool)
 
         .def("get_game_variable", &DoomGamePython::getGameVariable)
         .def("get_button", &DoomGamePython::getButton)

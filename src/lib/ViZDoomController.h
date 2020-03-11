@@ -110,6 +110,9 @@ namespace vizdoom {
         void manualTic(bool update = false); // guess: update = true => button inputs will be processed
     // end maunal tic control
         void tics(unsigned int tics, bool update = true);
+    // jboby93: advance tics for input regardless of isTicPossible()'s value
+        void forceTics(unsigned int tics, bool update = true);
+    //
         void restartMap(std::string demoPath = "");
         void respawnPlayer();
         bool isDoomRunning();

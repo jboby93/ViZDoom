@@ -331,6 +331,38 @@ namespace vizdoom {
         }
     }
 
+    // jboby93: advance tics for input regardless of isTicPossible()'s value
+    void DoomController::forceTics(unsigned int tics, bool update) {
+        if (this->allowDoomInput && !this->runDoomAsync) {
+            for (int i = 0; i < DELTA_BUTTON_COUNT; ++i) {
+                this->input->BT_MAX_VALUE[i] = tics * this->_input->BT_MAX_VALUE[i];
+            }
+        }
+
+        int ticsMade = 0;
+
+        for (unsigned int i = 0; i < tics; ++i) {
+            if (i == tics - 1) this->manualTic(update);
+            else this->manualTic(false);
+
+            ++ticsMade;
+
+            if (!this->isTicPossible() && i != tics - 1) { // <- should isTicPossible() be left here?
+                this->MQDoom->send(MSG_CODE_UPDATE);
+                this->waitForDoomWork();
+                break;
+            }
+        }
+
+        if (this->allowDoomInput && !this->runDoomAsync) {
+            for (int i = BINARY_BUTTON_COUNT; i < BUTTON_COUNT; ++i) {
+                this->input->BT_MAX_VALUE[i - BINARY_BUTTON_COUNT] = this->_input->BT_MAX_VALUE[i -
+                                                                                                BINARY_BUTTON_COUNT];
+                this->input->BT[i] = this->input->BT[i] / ticsMade;
+            }
+        }
+    }
+
     void DoomController::restartMap(std::string demoPath) {
         this->setMap(this->map, demoPath);
     }
