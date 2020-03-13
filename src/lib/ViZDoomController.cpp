@@ -347,7 +347,9 @@ namespace vizdoom {
 
             ++ticsMade;
 
-            if (!this->isTicPossible() && i != tics - 1) { // <- should isTicPossible() be left here?
+            //bool r = true; // this->isTicPossible();
+            //if (!r && i != tics - 1) { // <- should isTicPossible() be left here?
+            if (i != tics - 1) {
                 this->MQDoom->send(MSG_CODE_UPDATE);
                 this->waitForDoomWork();
                 break;
